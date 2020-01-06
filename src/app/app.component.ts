@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IFlash } from './flash.model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,33 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-flashcards';
+  flashs: IFlash[] = [{
+    question: 'Question 1',
+    answer: 'Answer 1',
+    show: false,
+    id: getRandomNumber(),
+  } , {
+    question: 'Question 2',
+    answer: 'Answer 2',
+    show: false,
+    id: getRandomNumber(),
+  } , {
+    question: 'Question 3',
+    answer: 'Answer 3',
+    show: false,
+    id: getRandomNumber(),
+  }];
+  trackByFlashId(index,
+                 flash) {
+      return flash.id;
+    }
+    handleToggleCard(id: number) {
+      const flash = this.flashs.find(f  = > f.id ===id);
+      flash.show = !flash.show;
+    }
+  }
+
+function getRandomNumber() {
+  return Math.floor(
+    Math.random() * 10000);
 }

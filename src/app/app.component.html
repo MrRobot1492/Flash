@@ -1,9 +1,19 @@
 <html>
-  <header>
+  <header class="card-header" (click)="toggleCard()">
+    <p class="card-header-title">{{flash.question}}</p>
+    <a class="card-header-icon" href="javascript:void(0)" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </a>
   </header>
   <body>
   <div class="flashs">
-    <app-flash></app-flash>
+    <app-flash
+    *ngFor="let flash of flashs; trackBy: trackByFlashId"
+    [flash]="flash"
+    (onToggleCard)=handleToggleCard($event)>
+    </app-flash>
   </div>
   </body>
 </html>
