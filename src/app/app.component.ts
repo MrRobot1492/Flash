@@ -28,12 +28,26 @@ export class AppComponent {
                  flash) {
       return flash.id;
     }
+    editing=false;
+    editingId:number;
     handleToggleCard(id: number) {
-      const flash = this.flashs.find(f  = > f.id ===id);
+      const flash = this.flashs.find(flash  = > flash.id === id);
       flash.show = !flash.show;
     }
+    handleDelete(id: number) {
+      const flashId = this.flashs.indexOf(flash  = > flash.id === id);
+      this.flashs.splice(flashId,1);
+      flash.show = !flash.show;
+    }
+    handleEdit(id: number) {
+      this.editing=true;
+      this.editingId = id;
   }
-
+  handleRememberedChanghe({id,flag}) {
+    const flash = this.flashs.find(flash = > flash.id === id);
+    flash.remembered = flag;
+}
+}
 function getRandomNumber() {
   return Math.floor(
     Math.random() * 10000);
