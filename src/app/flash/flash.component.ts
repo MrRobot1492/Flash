@@ -29,14 +29,14 @@ export class FlashComponent {
  }
  markCorrect() {
   this.onRememberedChange.emit({
-    id:this.flash.id,
-    flag:'correct'
+    id: this.flash.id,
+    flag: 'correct'
   });
  }
  markIncorrect() {
   this.onRememberedChange.emit({
-    id:this.flash.id,
-    flag:'incorrect'
+    id: this.flash.id,
+    flag: 'incorrect'
   });
  }
 }

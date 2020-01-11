@@ -7,6 +7,8 @@ import { IFlash } from './flash.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  editing = false;
+  editingId: number;
   title = 'ng-flashcards';
   flashs: IFlash[] = [{
     question: 'Question 1',
@@ -28,23 +30,27 @@ export class AppComponent {
                  flash) {
       return flash.id;
     }
-    editing=false;
-    editingId:number;
+
     handleToggleCard(id: number) {
-      const flash = this.flashs.find(flash  = > flash.id === id);
+      const flash = this.flashs.find(element  => element.id === id);
       flash.show = !flash.show;
     }
+
     handleDelete(id: number) {
-      const flashId = this.flashs.indexOf(flash  = > flash.id === id);
-      this.flashs.splice(flashId,1);
+      // tslint:disable-next-line: only-arrow-functions
+      const flashId = this.flashs.map(function(el) {
+        return el.id;
+      }).indexOf(id);
+      this.flashs.splice(flashId, 1);
+      const flash = this.flashs[flashId];
       flash.show = !flash.show;
     }
     handleEdit(id: number) {
-      this.editing=true;
+      this.editing = true;
       this.editingId = id;
   }
-  handleRememberedChanghe({id,flag}) {
-    const flash = this.flashs.find(flash = > flash.id === id);
+  handleRememberedChange({id, flag}) {
+    const flash = this.flashs.find(element => element.id === id);
     flash.remembered = flag;
 }
 }
